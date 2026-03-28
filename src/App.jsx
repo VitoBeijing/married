@@ -171,9 +171,13 @@ function App() {
       <div className="banner">
         <div className="banner-track">
           <img src="https://img.feria.eu.org/r8daoy.webp" alt="" />
-          <img src="https://img.feria.eu.org/3rsqdk.webp" alt="" />
+          {/* <img src="https://img.feria.eu.org/3rsqdk.webp" alt="" />
           <img src="https://img.feria.eu.org/5bjaly.webp" alt="" />
-          <img src="https://img.feria.eu.org/66wluv.webp" alt="" />
+          <img src="https://img.feria.eu.org/5bjaly.webp" alt="" /> */}
+          {/* https://picui.ogmua.cn/s1/2026/03/28/69c7dbc81107f.webp
+https://picui.ogmua.cn/s1/2026/03/28/69c7dbc826290.webp
+https://picui.ogmua.cn/s1/2026/03/28/69c7dbca56744.webp
+https://picui.ogmua.cn/s1/2026/03/28/69c7dbcbbb60c.webp */}
         </div>
         <div className="banner-overlay">
           <div className="banner-content">
