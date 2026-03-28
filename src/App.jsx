@@ -115,11 +115,11 @@ function App() {
   };
 
   const openNavigation = (type) => {
-    const lat = 39.94;
-    const lng = 116.49;
+    const lat = 39.93555;
+    const lng = 116.485839;
     const name = '大董郡王府·覠宴';
     const address = '北京市朝阳区朝阳公园南路19号郡王府内西侧别院（顺承酒店内园中园一层101）';
-    
+    // 116.479325, 39.929537
     let navUrl = '';
     
     // 优先使用URL Scheme直接唤起APP
@@ -130,7 +130,7 @@ function App() {
       break;
     case 'bmap':
       // 百度地图
-      navUrl = `http://api.map.baidu.com/marker?location=${lat},${lng}&title=${encodeURIComponent(name)}&content=${encodeURIComponent(address)}&output=html&src=webapp.baidu.openAPIDemo`;
+      navUrl = `http://api.map.baidu.com/marker?location=${39.941557},${116.492352}&title=${encodeURIComponent(name)}&content=${encodeURIComponent(address)}&output=html&src=webapp.baidu.openAPIDemo`;
       break;
     case 'tmap':
       // 腾讯地图
