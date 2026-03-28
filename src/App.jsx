@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import './App.css'
 
 // 宾客配置文件
@@ -78,8 +78,34 @@ const guestsConfig = {
 
 function App() {
   const [guestName, setGuestName] = useState('');
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef(null);
 
   useEffect(() => {
+    // 自动播放音乐
+    const playMusic = () => {
+      if (audioRef.current) {
+        audioRef.current.play().then(() => {
+          setIsPlaying(true);
+        }).catch(err => {
+          console.log('自动播放被阻止:', err);
+        });
+      }
+    };
+    
+    // 用户交互后尝试播放（兼容浏览器限制）
+    const handleInteraction = () => {
+      playMusic();
+      document.removeEventListener('click', handleInteraction);
+      document.removeEventListener('touchstart', handleInteraction);
+    };
+    
+    document.addEventListener('click', handleInteraction);
+    document.addEventListener('touchstart', handleInteraction);
+    
+    // 尝试自动播放
+    playMusic();
+    
     const urlParams = new URLSearchParams(window.location.search);
     const guestKey = urlParams.get('guest');
     
@@ -92,6 +118,15 @@ function App() {
     }
   }, []);
 
+  const toggleMusic = () => {
+    if (isPlaying) {
+      audioRef.current.pause();
+    } else {
+      audioRef.current.play();
+    }
+    setIsPlaying(!isPlaying);
+  };
+
   const openNavigation = (type) => {
     const lat = 39.94;
     const lng = 116.49;
@@ -103,19 +138,20 @@ function App() {
     // 优先使用URL Scheme直接唤起APP
     switch(type) {
       case 'amap':
-        // 高德地图 APP scheme
-        navUrl = `androidamap://viewMap?point=${lng},${lat}&name=${encodeURIComponent(name)}&poiid=null`;
-        break;
-      case 'bmap':
-        // 百度地图 APP scheme
-        navUrl = `bdapp://map/marker?location=${lat},${lng}&title=${encodeURIComponent(name)}&content=${encodeURIComponent(address)}&src=webapp.baidu.openAPIDemo`;
-        break;
-      case 'tmap':
-        // 腾讯地图 APP scheme
-        navUrl = `qqmap://map/marker?marker=coord:${lat},${lng};title:${encodeURIComponent(name)};addr:${encodeURIComponent(address)}&referer=myapp`;
-        break;
-      default:
-        navUrl = `androidamap://viewMap?point=${lng},${lat}&name=${encodeURIComponent(name)}&poiid=null`;
+      // 高德地图
+      navUrl = `https://uri.amap.com/marker?position=${lng},${lat}&name=${encodeURIComponent(name)}&coordinate=gaode&callnative=1`;
+      break;
+    case 'bmap':
+      // 百度地图
+      navUrl = `http://api.map.baidu.com/marker?location=${lat},${lng}&title=${encodeURIComponent(name)}&content=${encodeURIComponent(address)}&output=html&src=webapp.baidu.openAPIDemo`;
+      break;
+    case 'tmap':
+      // 腾讯地图
+      navUrl = `https://apis.map.qq.com/uri/v1/marker?marker=coord:${lat},${lng};title:${encodeURIComponent(name)};addr:${encodeURIComponent(address)}&referer=myapp`;
+      break;
+    default:
+      // 默认打开高德
+      navUrl = `https://uri.amap.com/marker?position=${lng},${lat}&name=${encodeURIComponent(name)}&coordinate=gaode&callnative=1`;
     }
     
     // 尝试直接打开APP
@@ -124,24 +160,34 @@ function App() {
 
   return (
     <div className="invitation-card">
+      <audio ref={audioRef} loop>
+        <source src="/三套车乐队 - 总有一天你会出现在我身边加长版.mp3" type="audio/mpeg" />
+      </audio>
+      
+      <div className={`music-btn ${isPlaying ? 'playing' : ''}`} onClick={toggleMusic}>
+        <span className="note-icon">{isPlaying ? '🎶' : '🎶'}</span>
+      </div>
+      
       <div className="banner">
         <div className="banner-track">
-          <img src="https://p.sda1.dev/31/829a1ea3b4946ee0baa915a443d3b47e/pic1.webp" alt="婚礼照片1" />
-          <img src="https://p.sda1.dev/31/acc53fd00d0d8b4f423cd42837afc12c/pic2.webp" alt="婚礼照片2" />
-          <img src="https://p.sda1.dev/31/fa2289247463f67bfd05e0e1231ce13c/pic3.webp" alt="婚礼照片3" />
-          <img src="https://p.sda1.dev/31/ba1be1b161afcf04c1b330aa6b8d5478/pic4.webp" alt="婚礼照片4" />
+          <img src="https://img.feria.eu.org/r8daoy.webp" alt="" />
+          <img src="https://img.feria.eu.org/3rsqdk.webp" alt="" />
+          <img src="https://img.feria.eu.org/5bjaly.webp" alt="" />
+          <img src="https://img.feria.eu.org/66wluv.webp" alt="" />
+        </div>
+        <div className="banner-overlay">
+          <div className="banner-content">
+            <div className="ornament">✿</div>
+            <div className="title">新婚答谢宴</div>
+            <div className="subtitle">Wedding Reception</div>
+            <div className="couple-names">韩笑 & 段佩珊</div>
+          </div>
         </div>
       </div>
       
       <div className="card-content">
-        <div className="ornament">✿</div>
         
-        <div className="title">新婚答谢宴</div>
-        <div className="subtitle">Wedding Reception</div>
-        
-        <div className="couple-names">韩笑 & 段佩珊</div>
-        
-        <div className="guest-name">{guestName}</div>
+        <div className="guest-name-section">{guestName}</div>
         
         <div className="divider"></div>
         

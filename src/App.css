@@ -113,7 +113,7 @@ body {
 }
 
 .guest-name {
-  font-size: 12px;
+  font-size: 15px;
   color: #999;
   margin-bottom: 25px;
   font-family: var(--font-serif);
@@ -440,7 +440,7 @@ body {
   }
   
   .guest-name {
-    font-size: 13px;
+    font-size: 16px;
     margin-bottom: 35px;
   }
   
@@ -524,4 +524,110 @@ body {
   .footer {
     font-size: 14px;
   }
+}
+
+.music-btn {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: #8b5a2b;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  z-index: 100;
+  transition: transform 0.2s ease;
+}
+
+.music-btn:active {
+  transform: scale(0.9);
+}
+
+.music-btn .note-icon {
+  display: inline-block;
+}
+
+.music-btn.playing .note-icon {
+  animation: rotate 2s linear infinite;
+}
+
+.banner-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 40px 20px 30px;
+  background: linear-gradient(to top, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.7) 60%, transparent 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.banner-content {
+  text-align: center;
+}
+
+.banner-content .ornament {
+  margin-bottom: 8px;
+}
+
+.banner-content .title {
+  font-size: 26px;
+  margin-bottom: 4px;
+  letter-spacing: 6px;
+}
+
+.banner-content .subtitle {
+  font-size: 10px;
+  margin-bottom: 10px;
+  letter-spacing: 3px;
+}
+
+.banner-content .couple-names {
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+
+.banner-content .guest-name {
+  font-size: 14px;
+}
+
+@media (min-width: 600px) {
+  .banner-overlay {
+    padding: 60px 20px 40px;
+  }
+  
+  .banner-content .title {
+    font-size: 30px;
+  }
+  
+  .banner-content .subtitle {
+    font-size: 12px;
+  }
+  
+  .banner-content .couple-names {
+    font-size: 24px;
+  }
+  
+  .banner-content .guest-name {
+    font-size: 15px;
+  }
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.guest-name-section {
+  font-size: 16px;
+  color: var(--text-color);
+  margin-top: 10px;
+  opacity: 0.8;
 }
