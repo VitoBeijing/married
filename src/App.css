@@ -1,0 +1,466 @@
+:root {
+  --primary-color: #8b5a2b;
+  --secondary-color: #c9a86c;
+  --text-color: #4a4a4a;
+  --light-bg: #faf6f1;
+  --font-chinese: "Ma Shan Zheng", "Noto Serif SC", "ZCOOL XiaoWei", serif;
+  --font-serif: "Noto Serif SC", serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #fdf8f0 0%, #f5ebe0 100%);
+  font-family: var(--font-chinese);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+#root {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.invitation-card {
+  background: #fff;
+  width: 100%;
+  max-width: 420px;
+  border-radius: 4px;
+  box-shadow: 0 25px 80px rgba(139, 90, 43, 0.12);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.banner {
+  width: 100%;
+  height: 280px;
+  position: relative;
+  overflow: hidden;
+}
+
+.banner-track {
+  display: flex;
+  height: 100%;
+  animation: scrollBanner 8s ease-in-out infinite;
+}
+
+.banner-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes scrollBanner {
+  0%, 25% { transform: translateX(0); }
+  35%, 60% { transform: translateX(-50%); }
+  70%, 100% { transform: translateX(0); }
+}
+
+.banner img {
+  width: 50%;
+  height: 100%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.card-content {
+  padding: 36px 24px 20px;
+}
+
+.ornament {
+  font-size: 22px;
+  color: var(--secondary-color);
+  margin-bottom: 20px;
+  letter-spacing: 6px;
+}
+
+.title {
+  font-size: 30px;
+  color: var(--primary-color);
+  margin-bottom: 8px;
+  letter-spacing: 6px;
+  font-weight: 400;
+  white-space: nowrap;
+  font-family: var(--font-chinese);
+}
+
+.subtitle {
+  font-size: 11px;
+  color: #a08060;
+  margin-bottom: 30px;
+  letter-spacing: 5px;
+  font-family: var(--font-serif);
+  text-transform: uppercase;
+}
+
+.guest-name {
+  font-size: 12px;
+  color: #999;
+  margin-bottom: 25px;
+  font-family: var(--font-serif);
+  letter-spacing: 2px;
+}
+
+.divider {
+  width: 80px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--secondary-color), transparent);
+  margin: 30px auto;
+}
+
+.intro-text {
+  color: var(--text-color);
+  line-height: 2.2;
+  font-size: 14px;
+  margin-bottom: 15px;
+  font-family: var(--font-chinese);
+}
+
+.date-highlight {
+  font-size: 22px;
+  color: var(--primary-color);
+  font-weight: 400;
+  letter-spacing: 2px;
+  margin: 20px 0;
+  font-family: var(--font-chinese);
+}
+
+.event-details {
+  margin: 30px 0;
+  padding: 24px 20px;
+  background: var(--light-bg);
+  border-radius: 2px;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 12px 0;
+  gap: 6px;
+}
+
+.detail-label {
+  color: var(--primary-color);
+  font-size: 12px;
+  font-family: var(--font-serif);
+  min-width: 28px;
+  text-align: right;
+  letter-spacing: 1px;
+}
+
+.detail-value {
+  color: var(--text-color);
+  font-size: 13px;
+  line-height: 2;
+  text-align: left;
+  font-family: var(--font-chinese);
+}
+
+.time-display {
+  font-size: 20px;
+  color: var(--primary-color);
+  font-weight: 400;
+  letter-spacing: 1px;
+  font-family: var(--font-chinese);
+}
+
+.address {
+  font-size: 12px;
+  line-height: 2;
+  color: #666;
+  font-family: var(--font-chinese);
+}
+
+.restaurant-name {
+  font-size: 15px;
+  color: var(--primary-color);
+  font-weight: 500;
+  margin-top: 6px;
+  letter-spacing: 1px;
+  font-family: var(--font-chinese);
+}
+
+.closing-text {
+  color: var(--text-color);
+  font-size: 14px;
+  line-height: 2;
+  margin-top: 12px;
+  font-family: var(--font-chinese);
+}
+
+.notice {
+  margin-top: 30px;
+  padding: 20px;
+  background: #fdfcfa;
+  border-radius: 2px;
+  text-align: left;
+}
+
+.notice-title {
+  color: var(--primary-color);
+  font-family: var(--font-chinese);
+  font-weight: 500;
+  margin-bottom: 12px;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+.notice p {
+  color: #888;
+  font-size: 11px;
+  line-height: 2;
+  font-family: var(--font-chinese);
+  margin: 8px 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.notice .icon {
+  color: var(--secondary-color);
+  flex-shrink: 0;
+  font-size: 10px;
+  margin-top: 2px;
+}
+
+.map-section {
+  position: relative;
+  width: 100%;
+}
+
+.map-container {
+  width: 100%;
+  height: 220px;
+  position: relative;
+  overflow: hidden;
+  background: #e8e8e8;
+}
+
+.amap-static {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.map-marker-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.map-marker-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.map-marker-wrapper .heart {
+  font-size: 42px;
+  animation: heartbeat 1.5s ease-in-out infinite;
+  filter: drop-shadow(0 3px 8px rgba(233, 30, 99, 0.5));
+  position: relative;
+  z-index: 2;
+}
+
+.map-marker-wrapper .pulse {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30px;
+  height: 30px;
+  background: rgba(233, 30, 99, 0.25);
+  border-radius: 50%;
+  animation: pulse 2s ease-out infinite;
+  z-index: 1;
+}
+
+.map-marker-wrapper .label {
+  background: #fff;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 11px;
+  color: #333;
+  margin-top: 4px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  white-space: nowrap;
+  font-family: var(--font-chinese);
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+@keyframes pulse {
+  0% { transform: translate(-50%, -50%) scale(0.5); opacity: 1; }
+  100% { transform: translate(-50%, -50%) scale(2.5); opacity: 0; }
+}
+
+.nav-hint {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(233, 30, 99, 0.95);
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-size: 12px;
+  color: #fff;
+  font-family: var(--font-chinese);
+  box-shadow: 0 2px 12px rgba(233, 30, 99, 0.4);
+  z-index: 20;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.footer {
+  margin-top: 0;
+  color: #a08060;
+  font-size: 12px;
+  letter-spacing: 3px;
+  font-family: var(--font-chinese);
+  padding: 20px;
+  background: #fff;
+}
+
+/* 桌面端 */
+@media (min-width: 600px) {
+  .invitation-card {
+    max-width: 680px;
+  }
+  
+  .banner {
+    height: 320px;
+  }
+  
+  .card-content {
+    padding: 50px 60px 40px;
+  }
+  
+  .ornament {
+    font-size: 28px;
+    margin-bottom: 30px;
+    letter-spacing: 8px;
+  }
+  
+  .title {
+    font-size: 38px;
+    margin-bottom: 12px;
+    letter-spacing: 10px;
+  }
+  
+  .subtitle {
+    font-size: 14px;
+    margin-bottom: 45px;
+    letter-spacing: 6px;
+  }
+  
+  .guest-name {
+    font-size: 13px;
+    margin-bottom: 35px;
+  }
+  
+  .divider {
+    width: 100px;
+    margin: 40px auto;
+  }
+  
+  .intro-text {
+    line-height: 2.4;
+    font-size: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .date-highlight {
+    font-size: 28px;
+    margin: 25px 0;
+  }
+  
+  .event-details {
+    margin: 40px 0;
+    padding: 35px 40px;
+  }
+  
+  .detail-row {
+    margin: 18px 0;
+    gap: 20px;
+  }
+  
+  .detail-label {
+    font-size: 14px;
+    min-width: 50px;
+  }
+  
+  .detail-value {
+    font-size: 15px;
+    line-height: 1.9;
+  }
+  
+  .time-display {
+    font-size: 26px;
+  }
+  
+  .address {
+    font-size: 14px;
+    line-height: 2;
+  }
+  
+  .restaurant-name {
+    font-size: 20px;
+    margin-top: 8px;
+  }
+  
+  .closing-text {
+    font-size: 16px;
+    line-height: 2.2;
+    margin-top: 15px;
+  }
+  
+  .notice {
+    margin-top: 40px;
+    padding: 28px 32px;
+  }
+  
+  .notice-title {
+    margin-bottom: 16px;
+    font-size: 14px;
+    text-align: left;
+  }
+  
+  .notice p {
+    font-size: 13px;
+    margin: 10px 0;
+    gap: 10px;
+  }
+  
+  .map-container {
+    height: 300px;
+  }
+  
+  .footer {
+    font-size: 14px;
+  }
+}
