@@ -148,7 +148,7 @@ function App() {
   return (
     <div className="invitation-card">
       <audio ref={audioRef} loop preload="auto">
-        <source src="/music.mp3" type="audio/mpeg" />
+        <source src="https://audio.fukit.cn/autoupload/f/yFByTdpHkJTMpG-kZkEwZ6rqKxwR0n1kQhJ7sNM0ESs/20260328/gJhO/music.mp3" type="audio/mpeg" />
       </audio>
       
       <div className={`music-btn ${isPlaying ? 'playing' : ''}`} onClick={toggleMusic}>
