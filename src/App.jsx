@@ -8,7 +8,6 @@ const guestsConfig = {
   "weizhigang": "魏志刚",
   "maguanglong": "马广龙",
   "duanruiqiang": "段瑞强",
-  "chenli": "陈李",
   "mengxianghuan": "孟祥欢",
   "songwenli": "宋文丽",
   "weimingze": "魏铭泽",
@@ -39,6 +38,7 @@ const guestsConfig = {
   "lizengying": "李增英",
   
   // 女方宾客
+  "chenli": "陈李",
   "cuiguanlin": "崔冠琳",
   "miaoyulin": "苗玉琳",
   "yangmoyu": "杨默予",
@@ -58,20 +58,7 @@ const guestsConfig = {
   "mengxianghuan_nv": "孟祥欢",
   "houboyu_nv": "侯勃聿",
   "songjiayi": "宋佳宜",
-  
-  // 别名/简称
-  "laoda": "老大",
-  "xiaoshen": "小沈",
-  "desa": "大嫂",
-  "yingjie": "莹姐",
-  "laoer": "老二",
-  "xiaolingling": "小00",
-  "ersao": "二嫂",
-  "laosan": "老三",
-  "tora": "Tora",
-  "ff": "FF",
-  "siyao": "思垚",
-  
+  "limengdi": "李梦迪",
   // 默认
   "default": "尊敬的宾客"
 };
@@ -82,30 +69,6 @@ function App() {
   const audioRef = useRef(null);
 
   useEffect(() => {
-    // 自动播放音乐
-    const playMusic = () => {
-      if (audioRef.current) {
-        audioRef.current.play().then(() => {
-          setIsPlaying(true);
-        }).catch(err => {
-          console.log('自动播放被阻止:', err);
-        });
-      }
-    };
-    
-    // 用户交互后尝试播放（兼容浏览器限制）
-    const handleInteraction = () => {
-      playMusic();
-      document.removeEventListener('click', handleInteraction);
-      document.removeEventListener('touchstart', handleInteraction);
-    };
-    
-    document.addEventListener('click', handleInteraction);
-    document.addEventListener('touchstart', handleInteraction);
-    
-    // 尝试自动播放
-    playMusic();
-    
     const urlParams = new URLSearchParams(window.location.search);
     const guestKey = urlParams.get('guest');
     
@@ -119,12 +82,16 @@ function App() {
   }, []);
 
   const toggleMusic = () => {
-    if (isPlaying) {
-      audioRef.current.pause();
-    } else {
-      audioRef.current.play();
+    if (audioRef.current) {
+      if (isPlaying) {
+        audioRef.current.pause();
+        setIsPlaying(false);
+      } else {
+        audioRef.current.play().then(() => {
+          setIsPlaying(true);
+        }).catch(() => {});
+      }
     }
-    setIsPlaying(!isPlaying);
   };
 
   const openNavigation = (type) => {
@@ -160,8 +127,8 @@ function App() {
 
   return (
     <div className="invitation-card">
-      <audio ref={audioRef} loop>
-        <source src="/三套车乐队 - 总有一天你会出现在我身边加长版.mp3" type="audio/mpeg" />
+      <audio ref={audioRef} loop preload="auto">
+        <source src="/music.mp3" type="audio/mpeg" />
       </audio>
       
       <div className={`music-btn ${isPlaying ? 'playing' : ''}`} onClick={toggleMusic}>
@@ -172,7 +139,7 @@ function App() {
         <div className="banner-track">
           {/* <img src="https://picui.ogmua.cn/s1/2026/03/28/69c7dbc81107f.webp" alt="" /> */}
           <img src="https://img.feria.eu.org/bw5cx5.webp" alt="" />
-          <img src="https://img.feria.eu.org/ubzwtr.webp" alt="" />
+          <img src="https://img.feria.eu.org/l6agsk.webp" alt="" />
           <img src="https://img.feria.eu.org/sd1tmw.webp" alt="" />
           <img src="https://img.feria.eu.org/yf8x5d.webp" alt="" />
 
