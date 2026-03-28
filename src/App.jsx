@@ -93,31 +93,32 @@ function App() {
   }, []);
 
   const openNavigation = (type) => {
-    const lat = 39.929;
-    const lng = 116.459;
+    const lat = 39.94;
+    const lng = 116.49;
     const name = '大董郡王府·覠宴';
     const address = '北京市朝阳区朝阳公园南路19号郡王府内西侧别院（顺承酒店内园中园一层101）';
     
     let navUrl = '';
     
+    // 优先使用URL Scheme直接唤起APP
     switch(type) {
       case 'amap':
-        // 高德地图
-        navUrl = `https://uri.amap.com/marker?position=${lng},${lat}&name=${encodeURIComponent(name)}&coordinate=gaode&callnative=1`;
+        // 高德地图 APP scheme
+        navUrl = `androidamap://viewMap?point=${lng},${lat}&name=${encodeURIComponent(name)}&poiid=null`;
         break;
       case 'bmap':
-        // 百度地图
-        navUrl = `http://api.map.baidu.com/marker?location=${lat},${lng}&title=${encodeURIComponent(name)}&content=${encodeURIComponent(address)}&output=html&src=webapp.baidu.openAPIDemo`;
+        // 百度地图 APP scheme
+        navUrl = `bdapp://map/marker?location=${lat},${lng}&title=${encodeURIComponent(name)}&content=${encodeURIComponent(address)}&src=webapp.baidu.openAPIDemo`;
         break;
       case 'tmap':
-        // 腾讯地图
-        navUrl = `https://apis.map.qq.com/uri/v1/marker?marker=coord:${lat},${lng};title:${encodeURIComponent(name)};addr:${encodeURIComponent(address)}&referer=myapp`;
+        // 腾讯地图 APP scheme
+        navUrl = `qqmap://map/marker?marker=coord:${lat},${lng};title:${encodeURIComponent(name)};addr:${encodeURIComponent(address)}&referer=myapp`;
         break;
       default:
-        // 默认打开高德
-        navUrl = `https://uri.amap.com/marker?position=${lng},${lat}&name=${encodeURIComponent(name)}&coordinate=gaode&callnative=1`;
+        navUrl = `androidamap://viewMap?point=${lng},${lat}&name=${encodeURIComponent(name)}&poiid=null`;
     }
     
+    // 尝试直接打开APP
     window.location.href = navUrl;
   };
 
@@ -125,10 +126,10 @@ function App() {
     <div className="invitation-card">
       <div className="banner">
         <div className="banner-track">
-          <img src="/pic1.webp" alt="婚礼照片1" />
-          <img src="/pic2.webp" alt="婚礼照片2" />
-          <img src="/pic3.webp" alt="婚礼照片3" />
-          <img src="/pic4.webp" alt="婚礼照片4" />
+          <img src="https://p.sda1.dev/31/829a1ea3b4946ee0baa915a443d3b47e/pic1.webp" alt="婚礼照片1" />
+          <img src="https://p.sda1.dev/31/acc53fd00d0d8b4f423cd42837afc12c/pic2.webp" alt="婚礼照片2" />
+          <img src="https://p.sda1.dev/31/fa2289247463f67bfd05e0e1231ce13c/pic3.webp" alt="婚礼照片3" />
+          <img src="https://p.sda1.dev/31/ba1be1b161afcf04c1b330aa6b8d5478/pic4.webp" alt="婚礼照片4" />
         </div>
       </div>
       
