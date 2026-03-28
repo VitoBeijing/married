@@ -3,60 +3,74 @@ import './App.css'
 
 // 宾客配置文件
 const guestsConfig = {
-  // 家人
+  // 男方宾客
   "weihongxia": "魏红霞 女士",
   "weizhigang": "魏志刚 先生",
   "maguanglong": "马广龙 先生",
-  "laoda": "老大",
-  "xiaoshen": "小沈",
   "duanruiqiang": "段瑞强 先生",
   "chenli": "陈李 先生",
   "mengxianghuan": "孟祥欢 先生",
-  "desa": "大嫂",
-  "xiaoshen_nvyou": "小沈男友",
   "songwenli": "宋文丽 女士",
   "weimingze": "魏铭泽 先生",
-  "yingjie": "莹姐",
-  "laoer": "老二",
-  "xiaolingling": "小00",
   "hanyonglong": "韩勇龙 先生",
   "weizhiqiang": "魏志强 先生",
   "houboyu": "候勃聿 先生",
-  "ersao": "二嫂",
-  "xiaolingling_nvyou": "小00男友",
   "baikangyuan": "白康元 先生",
   "weihongbo": "魏红波 先生",
-  "hounvyou": "侯女友",
-  "laosan": "老三",
   "laoshi": "毕老师",
   "lizhijin": "李质锦 先生",
   "weining": "魏宁 女士",
-  "zhangchi": "张驰 先生",
   "jiangwenduo": "姜文朵 女士",
-  "duanduan": "端端",
   "duanweijie": "段伟杰 先生",
   "weilanxizi": "魏蓝熙子 女士",
-  "wanghuanhuan": "王欢欢 女士",
-  "limengdi": "李梦迪 女士",
-  "wangzong": "王总",
   "yangyulan": "杨玉兰 女士",
-  "zhangzheng": "张政 先生",
-  "wanghuanhuan_lao gong": "王欢欢老公",
-  "laobeijing": "老北京",
-  "zhangjie": "张姐",
+  "zhangzheng": "张铮 先生",
   "weiqiquan": "魏齐全 先生",
-  "zhangmengyuan": "张梦圆 女士",
-  "tora": "Tora",
-  "ff": "FF",
-  "siyao": "思垚",
+  "zhangmengyuan": "张梦媛 女士",
   "shenhuijuan": "沈蕙娟 女士",
   "wangmanping": "王曼屏 女士",
-  "ergunainai": "二姑奶奶",
-  "pengqigeng": "彭启耕 先生",
-  "erguyeye": "二姑爷爷",
   "duanpeiqi": "段佩琦",
   "duanpeiyu": "段佩宇",
   "duanshibao": "段世宝",
+  "duanlanming": "段兰铭 先生",
+  "zhangguangrong": "张广荣 先生",
+  "weibaoxing": "魏保兴 先生",
+  "dingxiuzhen": "丁秀珍 女士",
+  "lizengying": "李增英 女士",
+  
+  // 女方宾客
+  "cuiguanlin": "崔冠琳 女士",
+  "miaoyulin": "苗玉琳 女士",
+  "yangmoyu": "杨默予 女士",
+  "liqing": "李晴 女士",
+  "fujiayun": "付嘉韵 女士",
+  "guotongshuai": "郭桐帅 先生",
+  "shenzhaojun": "沈兆均 先生",
+  "zhaoyicun": "赵翌存 先生",
+  "yijianing": "尹佳宁 女士",
+  "wangziming": "王子铭 先生",
+  "bicheng": "毕成 先生",
+  "zhangduanduan": "张端端 女士",
+  "wangzi": "王梓 先生",
+  "zhanghanyu": "张翰予 先生",
+  "musiyao": "穆思垚 女士",
+  "mahuanglong": "马广龙 先生",
+  "mengxianghuan_nv": "孟祥欢 女士",
+  "houboyu_nv": "侯勃聿 女士",
+  "songjiayi": "宋佳宜 女士",
+  
+  // 别名/简称
+  "laoda": "老大",
+  "xiaoshen": "小沈",
+  "desa": "大嫂",
+  "yingjie": "莹姐",
+  "laoer": "老二",
+  "xiaolingling": "小00",
+  "ersao": "二嫂",
+  "laosan": "老三",
+  "tora": "Tora",
+  "ff": "FF",
+  "siyao": "思垚",
   
   // 默认
   "default": "尊敬的宾客"
@@ -78,18 +92,30 @@ function App() {
     }
   }, []);
 
-  const openNavigation = () => {
-    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+  const openNavigation = (type) => {
     const lat = 39.929;
     const lng = 116.459;
-    const name = '大董·覠宴(意境菜·火锅涮·郡王府店)';
+    const name = '大董郡王府·覠宴';
+    const address = '北京市朝阳区朝阳公园南路19号郡王府内西侧别院（顺承酒店内园中园一层101）';
     
     let navUrl = '';
     
-    if (isMobile) {
-      navUrl = `bdapp://map/direction?destination=latlng:${lat},${lng}|name:${name}&origin=latlng:0,0|name:我的位置&mode=driving`;
-    } else {
-      navUrl = `https://map.baidu.com/search/${encodeURIComponent(name)}/@${lng},${lat},17,1`;
+    switch(type) {
+      case 'amap':
+        // 高德地图
+        navUrl = `https://uri.amap.com/marker?position=${lng},${lat}&name=${encodeURIComponent(name)}&coordinate=gaode&callnative=1`;
+        break;
+      case 'bmap':
+        // 百度地图
+        navUrl = `http://api.map.baidu.com/marker?location=${lat},${lng}&title=${encodeURIComponent(name)}&content=${encodeURIComponent(address)}&output=html&src=webapp.baidu.openAPIDemo`;
+        break;
+      case 'tmap':
+        // 腾讯地图
+        navUrl = `https://apis.map.qq.com/uri/v1/marker?marker=coord:${lat},${lng};title:${encodeURIComponent(name)};addr:${encodeURIComponent(address)}&referer=myapp`;
+        break;
+      default:
+        // 默认打开高德
+        navUrl = `https://uri.amap.com/marker?position=${lng},${lat}&name=${encodeURIComponent(name)}&coordinate=gaode&callnative=1`;
     }
     
     window.location.href = navUrl;
@@ -99,10 +125,10 @@ function App() {
     <div className="invitation-card">
       <div className="banner">
         <div className="banner-track">
-          <img src="/WechatIMG54.jpg" alt="婚礼照片1" />
-          <img src="/WechatIMG55.jpg" alt="婚礼照片2" />
-          <img src="/WechatIMG54.jpg" alt="婚礼照片1" />
-          <img src="/WechatIMG55.jpg" alt="婚礼照片2" />
+          <img src="/pic1.webp" alt="婚礼照片1" />
+          <img src="/pic2.webp" alt="婚礼照片2" />
+          <img src="/pic3.webp" alt="婚礼照片3" />
+          <img src="/pic4.webp" alt="婚礼照片4" />
         </div>
       </div>
       
@@ -111,6 +137,8 @@ function App() {
         
         <div className="title">新婚答谢宴</div>
         <div className="subtitle">Wedding Reception</div>
+        
+        <div className="couple-names">韩笑 & 段佩珊</div>
         
         <div className="guest-name">{guestName}</div>
         
@@ -128,15 +156,12 @@ function App() {
         <div className="event-details">
           <div className="detail-row">
             <span className="detail-label">时间</span>
-            <span className="detail-value time-display">12:00</span>
+            <span className="detail-value time-display">11:58</span>
           </div>
           <div className="detail-row">
             <span className="detail-label">地点</span>
             <div className="detail-value address">
-              北京市朝阳区麦子店街道<br />
-              朝阳公园南路19号顺承酒店<br />
-              内园中园一层101<br />
-              <div className="restaurant-name">大董·覠宴</div>
+              <div className="restaurant-name">大董郡王府·覠宴</div>
             </div>
           </div>
         </div>
@@ -153,22 +178,19 @@ function App() {
         </div>
       </div>
       
-      <div className="map-section">
-        <div className="map-container">
-          <img 
-            className="amap-static" 
-            src="https://restapi.amap.com/v3/staticmap?location=116.459,39.929&zoom=17&size=750*400&markers=mid,,,:116.459,39.929&key=YOUR_AMAP_KEY"
-            alt="地图"
-          />
-          <div className="map-marker-overlay">
-            <div className="map-marker-wrapper" onClick={openNavigation}>
-              <div className="pulse"></div>
-              <div className="heart">❤️</div>
-              <div className="label">大董·覠宴</div>
-            </div>
-          </div>
+      <div className="nav-buttons">
+        <div className="nav-btn" onClick={() => openNavigation('amap')}>
+          <span className="nav-icon">🗺️</span>
+          <span>高德地图</span>
         </div>
-        <div className="nav-hint" onClick={openNavigation}>点击桃心 · 打开导航</div>
+        <div className="nav-btn" onClick={() => openNavigation('bmap')}>
+          <span className="nav-icon">📍</span>
+          <span>百度地图</span>
+        </div>
+        <div className="nav-btn" onClick={() => openNavigation('tmap')}>
+          <span className="nav-icon">🔵</span>
+          <span>腾讯地图</span>
+        </div>
       </div>
       
       <div className="footer">
