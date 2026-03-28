@@ -66,6 +66,7 @@ const guestsConfig = {
 function App() {
   const [guestName, setGuestName] = useState('');
   const [isPlaying, setIsPlaying] = useState(false);
+  const [showConfetti, setShowConfetti] = useState(false);
   const audioRef = useRef(null);
 
   useEffect(() => {
@@ -80,6 +81,25 @@ function App() {
       setGuestName(guestsConfig["default"] + ' 您好');
     }
   }, []);
+
+  // 监听滚动到底部
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const scrollHeight = document.documentElement.scrollHeight;
+      const clientHeight = document.documentElement.clientHeight;
+      
+      if (scrollTop + clientHeight >= scrollHeight - 50) {
+        if (!showConfetti) {
+          setShowConfetti(true);
+          setTimeout(() => setShowConfetti(false), 3000);
+        }
+      }
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [showConfetti]);
 
   const toggleMusic = () => {
     if (audioRef.current) {
@@ -212,6 +232,41 @@ function App() {
       <div className="footer">
         期待与您相见
       </div>
+      
+      {showConfetti && <Confetti />}
+    </div>
+  );
+}
+
+// 彩带组件
+function Confetti() {
+  const colors = ['#ff6b6b', '#feca57', '#48dbfb', '#ff9ff3', '#54a0ff', '#5f27cd'];
+  const confettiPieces = Array.from({ length: 50 }, (_, i) => ({
+    id: i,
+    left: Math.random() * 100 + '%',
+    delay: Math.random() * 0.5 + 's',
+    color: colors[Math.floor(Math.random() * colors.length)],
+    size: Math.random() * 8 + 6 + 'px',
+    duration: Math.random() * 2 + 2 + 's'
+  }));
+  
+  return (
+    <div className="confetti-container">
+      {confettiPieces.map(piece => (
+        <div
+          key={piece.id}
+          className="confetti"
+          style={{
+            left: piece.left,
+            animationDelay: piece.delay,
+            backgroundColor: piece.color,
+            width: piece.size,
+            height: piece.size,
+            borderRadius: Math.random() > 0.5 ? '50%' : '0',
+            animation: `confetti-fall ${piece.duration} ease-out forwards`
+          }}
+        />
+      ))}
     </div>
   );
 }
