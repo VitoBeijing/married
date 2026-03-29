@@ -13,7 +13,7 @@ const guestsConfig = {
   "weimingze": "魏铭泽",
   "hanyonglong": "韩勇龙",
   "weizhiqiang": "魏志强",
-  "houboyu": "候勃聿",
+  "houboyu": "侯勃聿",
   "baikangyuan": "白康元",
   "weihongbo": "魏红波",
   "laoshi": "毕老师",
@@ -55,8 +55,6 @@ const guestsConfig = {
   "zhanghanyu": "张翰予",
   "musiyao": "穆思垚",
   "mahuanglong": "马广龙",
-  "mengxianghuan_nv": "孟祥欢",
-  "houboyu_nv": "侯勃聿",
   "songjiayi": "宋佳宜",
   "limengdi": "李梦迪",
   // 默认
