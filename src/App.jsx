@@ -45,7 +45,7 @@ const guestsConfig = {
   "liqing": "李晴",
   "fujiayun": "付嘉韵",
   "guotongshuai": "郭桐帅",
-  "shenzhaojun": "沈兆均",
+  "shenzhaojun": "沈兆钧",
   "zhaoyicun": "赵翌存",
   "yijianing": "尹佳宁",
   "wangziming": "王子铭",
