@@ -25,7 +25,7 @@ const guestsConfig = {
   "yangyulan": "杨玉兰",
   "zhangzheng": "张铮",
   "weiqiquan": "魏齐全",
-  "zhangmengyuan": "张梦媛",
+  "zhangmengyuan": "张孟媛",
   "shenhuijuan": "沈蕙娟",
   "wangmanping": "王曼屏",
   "duanpeiqi": "段佩琦",
