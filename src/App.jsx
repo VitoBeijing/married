@@ -57,6 +57,7 @@ const guestsConfig = {
   "mahuanglong": "马广龙",
   "songjiayi": "宋佳宜",
   "limengdi": "李梦迪",
+  "fengfan":"丰帆",
   // 默认
   "default": "尊敬的宾客"
 };
